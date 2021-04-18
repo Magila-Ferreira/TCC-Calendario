@@ -1,0 +1,175 @@
+<h2 class="tituloP">Lista de CALENDÁRIOS: </h2>
+<br>
+<a href="/cadastrados"><button>VOLTAR</button></a>
+<hr>
+
+{{#each calendarios}}
+<p>ID: {{id}}</p>
+<p>ANO: {{ano}}</p>
+<p>SEMESTRE: {{semestre}}</p>
+
+<a href="/delet/{{id}}"><button>DELETAR</button></a>
+<br><br>
+
+<hr>
+{{/each}}
+<br>
+<a href="/cadastrar"><button>CADASTRAR</button></a>
+<hr>
+
+<!-- Cadastro de calendários -->
+<div class="container col-lg-9 col-md-9 col-sm-11">
+  <table class="table table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">SEG</th>
+        <th scope="col">TER</th>
+        <th scope="col">QUA</th>
+        <th scope="col">QUI</th>
+        <th scope="col">SEX</th>
+        <th scope="col">SAB</th>
+        <th scope="col">DOM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>01</td>
+        <td>02</td>
+        <td>03</td>
+        <td>04</td>
+        <td>05</td>
+      </tr>
+      <tr>
+        <td>06</td>
+        <td>07</td>
+        <td>08</td>
+        <td>09</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+        <td>
+          {{#each dados}}
+          <span>{{this}}</span>
+          {{/each}}
+        </td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td>31</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ADDEXENTOS SEMANAS -->
+<tr>
+  <td></td>
+  {{#each semana1}}
+  <td>{{descricao}}</td>
+  {{/each}}
+</tr>
+<tr>
+
+<tr>
+  <td></td>
+  {{#each semana2}}
+  <td>
+    {{descricao}}
+  </td>
+  {{/each}}
+</tr>
+
+<tr>
+  <td></td>
+  {{#each semana3}}
+  <td>
+    {{descricao}}
+  </td>
+  {{/each}}
+</tr>
+
+<tr>
+  <td></td>
+  {{#each semana4}}
+  <td>
+    {{descricao}}
+  </td>
+  {{/each}}
+</tr>
+
+<tr>
+  <td></td>
+  {{#each semana5}}
+  <td>
+    {{descricao}}
+  </td>
+
+
+
+  <!-- INDEX -->
+  app . get ( '/ calendar2' , ( req , res ) => {
+  Evento . findAll ( {
+  } ) . então ( ( eventos ) => {
+  res . render ( 'calendar2' , { eventos : eventos } )
+
+  let datas = [ ]
+
+  eventos . forEach ( elemento => {
+
+  let data = {
+  dados : elemento . dados ,
+  descricao : elemento . descrição
+  }
+
+  datas . push ( dados )
+  console . log ( elemento . dados )
+  } ) ;
+
+  datas . push ( {
+  dados : '2020-11-23' ,
+  descricao : ''
+  } )
+
+  datas . push ( {
+  dados : '2020-11-25' ,
+  descricao : ''
+  } )
+
+  datas . push ( {
+  dados : '2020-11-26' ,
+  descricao : ''
+  } )
+
+  res . render ( 'calendar2' , { semana1 : datas , semana2 : datas , semana3 : datas , semana4 : datas , semana5 : datas
+  } )
+  } ) . catch ( ( erro ) => {
+  res . send ( "Houve um erro:" + erro )
+  } )
+  } )
+
+  
